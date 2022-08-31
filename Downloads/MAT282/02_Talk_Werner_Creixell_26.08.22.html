@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Geometric Deep Learning</title> <!-- You'll want to change that obviously-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="./stylesheets/katex.min.css">
+    <link rel="stylesheet" href="./stylesheets/liminal.css">
+
+    <style>            
+        /* Overall styling for slide */
+        .remark-slide-content {
+            padding:0em 4em 0em 4em;
+            font-family: 'Georgia';
+            letter-spacing: 0.025em;
+        }
+     
+        /* Styling for level one header, #Text */
+        .remark-slide-content h1 {
+            font-size: 2.4em;
+            color: #606060;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Styling for level two header, ##Text */
+        .remark-slide-content h2 {
+            font-size: 1.55em;
+            color: #606060;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+        
+        /* Styling for level three header, ###Text */
+        .remark-slide-content h3 {
+            font-size: 1.4em;
+            color: #606060;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+
+        /* Styling for paragraphs and lists */
+        .remark-slide-content p,ol,ul {font-size: 1.2em;}
+
+        /* Styling for code blocks */
+        .remark-code,.remark-inline-code {font-family: 'Ubuntu Mono';}
+        
+        /* Styling for links */
+        a {text-decoration: none;color: #666666;}
+        /* Setting link properties is particular, do not change order below*/
+        a:visited {color: #666666}        
+        a:hover {color: #33AA99}
+        a:active,a#active {color: #FF9700;}
+        
+        /* Some special classes for the title slide */
+        .title {
+            font-size: 2.0em;
+            color: #606060;
+            font-weight: bold;
+            letter-spacing: 0.05em;
+        }
+        
+        .author {
+            font-size: 1.4em;
+            color: #606060;
+            font-weight: bold;
+            letter-spacing: 0.02em;
+        }
+        
+        .coauthor {
+            font-size: 1.0em;
+            color: #606060;
+            font-weight: bold;
+            letter-spacing: 0.02em;
+        }
+        
+        .subtitle, .institution {
+            font-size: 1.0em;
+        }
+        
+        .date {
+            font-size: 1.0em;
+            font-style: italic;
+        }
+        
+        .note {
+            font-size: 0.8em;
+        }
+        
+        /* Other special classes */
+        .cite {
+            font-size: 0.8em;
+            color: #33AA99;
+            font-style: italic;
+        }
+        
+        .footnote {
+            position: absolute;
+            bottom: 2em;
+            left: 6em;
+            font-size: 0.7em;
+        }
+        
+        .caption {
+            font-size: 0.5em;
+            line-height: 10%;
+        }
+        
+    </style>
+</head>
+
+<body>
+    <textarea id="source">
+class: center, middle
+<br/><br/><br/><br/>                       
+.title[Geometric Deep Learning]     
+.subtitle[Geometría Hiperbólica en "Inteligencia Artificial"]
+<br/><br/>          
+.author[Werner Creixell]  
+.institution[Ingeniería Telemática USM]      
+<br/>
+.coauthor[Nicolás Fredes<sup>1</sup>, Diego Lazcano<sup>1</sup>, Felipe Arancibia<sup>1</sup>]  
+.institution[<sup>1</sup>Universidad Técnica Federico Santa María]      
+<br/><br/>
+.date[4 de Agosto 2022] 
+<br/><br/><br/>
+.note[Created with [{Liminal}](https://github.com/jonathanlilly/liminal) using [{Remark.js}](http://remarkjs.com/) + [{Markdown}](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) +  [{KaTeX}](https://katex.org)]
+    
+---
+
+# "Inteligencia" Artificial
+
+<img src='figures/AI.jpg' width='550' />
+
+ .footnote[Imagen sacada de https://www.flickr.com/photos/152824664@N07/30212411048/]
+
+---
+
+# Deep Learning
+
+{[See Through Walls](https://www.youtube.com/watch?v=HgDdaMy8KNE)}
+
+<img src='figures/uf1.jpg' width='600'/>
+        
+<!-- Comment out the next slide if you don't want the Table of Contents link -->         
+        
+---
+name: introduccion  
+class: center
+#  ¿Qué es Deep Learning?
+
+![network](figures/network.svg)
+
+$X = WI + b$
+
+---
+
+#Geometric = Hiperbólico
+
+![hyp](figures/hyp.svg)
+
+* El volúmen del espacio crece exponencialmente.
+
+* Ideal para representar estructuras jerárquicas, como árboles.
+
+---
+class: center, middle
+
+<img src='figures/lenguaje.svg' width='700' />
+
+---
+class: center, middle
+
+
+<img src='figures/tree.svg' width='500' />
+
+---
+
+class: center, middle
+
+<img src='figures/wordnet.png' width='500' />
+
+.footnote[Imagen sacada de {[Poincaré Embeddings for Learning Hierarchical Representations](https://arxiv.org/pdf/1705.08039.pdf)}]
+---
+class: center, middle
+
+
+# Hyperbolic Neural Networks
+
+
+---
+#Disco de Poincaré
+
+El Disco de Poincaré se define como:
+
+
+<div>\[\mathbb{D}_{c}^{n}=\{\mathbf{u}\in \mathbb{R}^{n}: c\:||\mathbf{u}||^{2}<1,\:c \geq 0\}\]</div>
+
+
+Con el tensor métrico Riemaniano:
+
+
+<div>\[g_{\mathbf{u}}^{\mathbb{D}^n_{c}} = \lambda_{\mathbf{u}}^{c}\:g^{E}
+\]</div>
+
+
+donde $\lambda_{\mathbf{u}}^{c} := \frac{2}{1-c\:||\mathbf{u}||^{2}}$ y $g^{E}=\mathbf{I}_n$ es el tensor métrico Euclideano.
+     
+
+<div>\[\mathbf{v} = \exp_{0}^{c}(\mathbf{x}):=\tanh(\sqrt{c}||\mathbf{x}||)\frac{\mathbf{x}}{\sqrt{c}||\mathbf{x}||}\]</div> 
+
+
+<div>\[\mathbf{x} = \log_{0}^{c}(\mathbf{v}) := \tanh^{-1}(\sqrt{c}||\mathbf{v}||)\frac{\mathbf{v}}{\sqrt{c}||\mathbf{v}||}\]</div>
+
+
+---
+
+class: center, middle
+
+<img src='figures/moebius.png' width='500' />
+.footnote[Imagen sacada de [Hyperbolic Image Embeddings](https://openaccess.thecvf.com/content_CVPR_2020/papers/Khrulkov_Hyperbolic_Image_Embeddings_CVPR_2020_paper.pdf)]
+---
+
+class: center
+
+#Poincaré Image Embeddings
+
+<img src='figures/embeddings.svg' width='550' />
+
+
+---
+
+class: center, middle
+
+# GAN: Generative Adversarial Network
+
+---
+
+class: center
+
+<img src='figures/Woman_1.jpg' width='550' />
+
+.footnote[Imagen generada por una Style GAN. Dominio público]
+---
+class: center
+
+# GAN
+
+![gan](figures/GAN.png)
+
+
+<div>\[ \min \limits_{\mathcal{G}} \max \limits_{\mathcal{D}} V(\mathcal{G}, \mathcal{D})\]</div>
+
+
+<div>\[ V(\mathcal{G}, \mathcal{D})=\mathbb{E}_{\mathbf{x} \sim p_{data}(\mathbf{x})}[\log (\mathcal{D}(\mathbf{x}))] 
+     + \mathbb{E}_{\mathbf{z}\sim p_{z}(\mathbf{z})}[\log (1-\mathcal{D}(\mathcal{G}(\mathbf{z})))]\]</div>
+    
+    
+---
+
+class: center, middle
+
+# HGAN: Hyperbolic Generative Adversarial Networks
+
+.left-column[<img src='figures/generador.svg' height='400' />]
+.right-column[<img src='figures/discriminador.svg' height='400' />]
+
+---
+# HGAN
+
+.left-column[<img src='figures/cifar.svg' width='300' />]
+.right-column[<img src='figures/mnist.svg' width='300' />]
+
+---
+
+class: center, middle
+
+# Gen Ontology
+
+---
+
+#HyperGO: A novel protein function prediction method using hyperbolic deep learning
+
+<img src='figures/esquema.svg' width='800' />
+
+---
+
+#Graph Embeddings
+
+<img src='figures/graph_embedding.svg' width='800' />
+
+
+
+---
+
+#Hyperbolic VAE
+
+.left-column[<img src='figures/normal.png' />]
+.right-column[Imagen sacada de [Continuous Hierarchical Representations with
+Poincaré Variational Auto-Encoders](https://proceedings.neurips.cc/paper/2019/file/0ec04cb3912c4f08874dd03716f80df1-Paper.pdf)]
+
+---
+#Futuro
+
+* Convolución en el espacio Hiperbólico.
+
+* ¿Qué hago con la curvatura?
+---
+class: middle, center
+
+# Muchas gracias
+---
+<div>\[\mathcal{N}_{\mathbb{B}_{c}^{d}}^{\mathrm{W}}(\boldsymbol{z} \mid \boldsymbol{\mu}, \Sigma)= \mathcal{N}\left(\lambda_{\boldsymbol{\mu}}^{c} \log _{\boldsymbol{\mu}}(\boldsymbol{z}) \mid \mathbf{0}, \Sigma\right)\left(\frac{\sqrt{c} d_{p}^{c}(\boldsymbol{\mu}, \boldsymbol{z})}{\sinh \left(\sqrt{c} d_{p}^{c}(\boldsymbol{\mu}, \boldsymbol{z})\right)}\right)^{d-1}\]</div>
+
+
+
+    </textarea>
+    <script src="./javascript/remark-latest.min.js" type="text/javascript"></script>
+    <script defer src="./javascript/katex.min.js"></script>
+    <script defer src="./javascript/auto-render.min.js"></script>
+    <!-- Call remark.js and KaTeX with liminal default settings -->
+    <script type="text/javascript" src="./javascript/call-javascript.js">
+</script>
+       
+</body>
+</html>
