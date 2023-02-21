@@ -658,7 +658,7 @@ Change widths as necessary
 }
 
 /* TABLET/NETBOOK */
-@media only screen and (min-width: 768px) { 
+@media only screen and (min-width: 768px) {
   body {
 
   }
@@ -729,4 +729,10 @@ Change widths as necessary
   @page {margin: 0.5cm}
   p, h2, h3 {orphans: 3; widows: 3}
   h2, h3{page-break-after: avoid}
+}
+
+
+.column {
+  float: left;
+  width: 50%;
 }
